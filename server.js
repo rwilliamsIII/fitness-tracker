@@ -17,6 +17,10 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populatedb", { useNewUrlParser: true });
 
+app.use(require("./routes/dbroutes"));
+
+app.use(require("./routes/htmlroutes"));
+
 
 
 
