@@ -36,3 +36,19 @@ router.put("/api/workouts/:id", (req, res) => {
                 console.log(err);
             });
 });
+
+router.get("/api/workouts/range", (req, res) => {
+    let startWeek = moment().startOf("week").toDate();
+    let endWeek = moment().endOf("week").toDate();
+    Workout.find({
+        day: {
+            $gte: startWeek,
+            $lt: endWeek
+        }})
+    .then(dbWorkout => {
+        console.log(dbWorkout);
+        res.json(dbWorkout);
+    }).catch(err => {
+        console.log(err);
+    });
+});
